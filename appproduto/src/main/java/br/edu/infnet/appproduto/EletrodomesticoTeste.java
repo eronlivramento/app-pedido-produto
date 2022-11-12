@@ -12,21 +12,21 @@ public class EletrodomesticoTeste implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		Eletrodomestico s1 = new Eletrodomestico();		
-		s1.garantiaEstendida = true;
-		s1.descricao = "Batedeira Philco 4000";
-		s1.quantidade = 1;
+		s1.setGarantiaEstendida(true);
+		s1.setDescricao("Batedeira Philco 4000");
+		s1.setQuantidade(1);
 		System.out.println("Eletrodomestico - " + s1);
 		
 		Eletrodomestico s2 = new Eletrodomestico();		
-		s2.garantiaEstendida = false;
-		s2.descricao = "Maquina de lavar brastemp";
-		s2.quantidade = 2;
+		s2.setGarantiaEstendida(false);
+		s2.setDescricao("Maquina de lavar brastemp");
+		s2.setQuantidade(2);	
 		System.out.println("Eletrodomestico - " + s2);
 		
 		Eletrodomestico s3 = new Eletrodomestico();		
-		s3.garantiaEstendida = true;
-		s3.descricao = "Tv 4k Samsung";
-		s3.quantidade = 3;
+		s3.setGarantiaEstendida(true);
+		s3.setDescricao("Tv 4k Samsung");
+		s3.setQuantidade(3);	
 		System.out.println("Eletrodomestico - " + s3);
 	}
 }

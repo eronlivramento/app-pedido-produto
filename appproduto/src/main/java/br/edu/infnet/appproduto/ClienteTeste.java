@@ -12,21 +12,21 @@ public class ClienteTeste implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		Cliente s1 = new Cliente();		
-		s1.cpf = "12345667890";
-		s1.email = "cliente@primeiro.com";
-		s1.nome = "Primeiro cliente";
+		s1.setCpf("12345667890");
+		s1.setEmail("cliente@primeiro.com");
+		s1.setNome("Primeiro cliente");
 		System.out.println("Cliente - " + s1);
 		
 		Cliente s2 = new Cliente();		
-		s2.cpf = "0987654321";
-		s2.email = "cliente@segundo.com";
-		s2.nome = "Segundo cliente";
+		s2.setCpf("0987654321");
+		s2.setEmail("cliente@segundo.com");
+		s2.setNome("Segundo cliente");
 		System.out.println("Cliente - " + s2);
 		
-		Cliente s3 = new Cliente();		
-		s3.cpf = "9999999990";
-		s3.email = "cliente@terceiro.com";
-		s3.nome = "Terceiro cliente";
+		Cliente s3 = new Cliente();	
+		s3.setCpf("9999999990");
+		s3.setEmail("cliente@terceiro.com");
+		s3.setNome("Terceiro cliente");	
 		System.out.println("Cliente - " + s3);
 	}
 }
