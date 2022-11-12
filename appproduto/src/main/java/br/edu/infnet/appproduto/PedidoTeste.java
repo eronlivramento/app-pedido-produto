@@ -9,8 +9,9 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.appproduto.controller.PedidoController;
 import br.edu.infnet.appproduto.model.domain.Cliente;
-import br.edu.infnet.appproduto.model.domain.EletroEletronico;
+import br.edu.infnet.appproduto.model.domain.Eletroeletronico;
 import br.edu.infnet.appproduto.model.domain.Eletrodomestico;
 import br.edu.infnet.appproduto.model.domain.Escritorio;
 import br.edu.infnet.appproduto.model.domain.Pedido;
@@ -30,7 +31,7 @@ public class PedidoTeste implements ApplicationRunner {
 		escritorio.setDescricao("Mesa de escritorio");
 		escritorio.setTamanho(3.50f);
 		
-		EletroEletronico eletroeletronico = new EletroEletronico();		
+		Eletroeletronico eletroeletronico = new Eletroeletronico();		
 		eletroeletronico.setDescricao("DVD carro Philco");
 		eletroeletronico.setFragil(false);
 		eletroeletronico.setGarantiaEstendida(false);
@@ -59,8 +60,7 @@ public class PedidoTeste implements ApplicationRunner {
 		produtos.add(escritorio);
 		p1.setProdutos(produtos);
 		p1.setCliente(cliente);
-		
-		System.out.println("Pedido - " + p1);
+		PedidoController.incluir(p1);
 		
 		Pedido p2 = new Pedido();		
 		p2.setData(LocalDateTime.now());
@@ -71,7 +71,7 @@ public class PedidoTeste implements ApplicationRunner {
 		produtos.add(eletroeletronico);
 		p2.setProdutos(produtos);
 		p2.setCliente(cliente);
-		System.out.println("Pedido - " + p2);
+		PedidoController.incluir(p2);
 		
 		Pedido p3 = new Pedido();		
 		p3.setData(LocalDateTime.now());
@@ -81,6 +81,6 @@ public class PedidoTeste implements ApplicationRunner {
 		produtos.add(eletrodomestrico2);
 		p3.setProdutos(produtos);
 		p3.setCliente(cliente);
-		System.out.println("Pedido - " + p3);
+		PedidoController.incluir(p3);
 	}
 }

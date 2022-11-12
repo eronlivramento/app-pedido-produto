@@ -1,11 +1,13 @@
 package br.edu.infnet.appproduto.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import br.edu.infnet.appproduto.model.domain.Escritorio;
 
@@ -13,32 +15,37 @@ import br.edu.infnet.appproduto.model.domain.Escritorio;
 @Controller
 public class EscritorioController {
 	
+	private static Map<Integer, Escritorio> mapa = new HashMap<Integer, Escritorio>();	
+	private static Integer id = 1;
+	
+	public static void incluir(Escritorio escritorio) {
+		escritorio.setId(id++);
+		mapa.put(escritorio.getId(), escritorio);
+		
+		System.out.println("> " + escritorio);
+	}
+	
+	public static void excluir(Integer id) {
+		mapa.remove(id);
+	}
+	
+	public static Collection<Escritorio> obterLista(){
+		return mapa.values();
+	}
+		
 	@GetMapping(value = "/escritorio/lista")
 	public String telaLista(Model model) {
-		
-		Escritorio b1 = new Escritorio();		
-		b1.setFragil(false);
-		b1.setDescricao("Mesa de escritorio");
-		b1.setTamanho(3.50f);
-		
-		Escritorio b2 = new Escritorio();	
-		b2.setFragil(true);
-		b2.setDescricao("Sofa cama");
-		b2.setTamanho(1.5f);
-		
-		Escritorio b3 = new Escritorio();	
-		b3.setFragil(false);
-		b3.setDescricao("Cama box");
-		b3.setTamanho(2);
-
-		List<Escritorio> escritorio = new ArrayList<Escritorio>();
-		escritorio.add(b1);
-		escritorio.add(b2);
-		escritorio.add(b3);
-
-		model.addAttribute("listagem", escritorio);
+		model.addAttribute("listagem", obterLista());
 
 		return "escritorio/lista";
+	}
+	
+	@GetMapping(value = "/escritorio/{id}/excluir")
+	public String exclusao(@PathVariable Integer id) {
+
+		excluir(id);
+		
+		return "redirect:/escritorio/lista";
 	}
 
 }

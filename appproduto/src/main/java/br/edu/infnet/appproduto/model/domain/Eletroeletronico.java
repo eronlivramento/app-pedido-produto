@@ -1,6 +1,6 @@
 package br.edu.infnet.appproduto.model.domain;
 
-public class EletroEletronico extends Produto {
+public class Eletroeletronico extends Produto {
 	private boolean fragil;
 	private boolean garantiaEstendida;
 	private String descricao;

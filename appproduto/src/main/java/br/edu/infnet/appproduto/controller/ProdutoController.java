@@ -1,43 +1,52 @@
 package br.edu.infnet.appproduto.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import br.edu.infnet.appproduto.model.domain.Produto;
 
 @Controller
 public class ProdutoController {
 	
+	private static Map<Integer, Produto> mapa = new HashMap<Integer, Produto>();	
+	private static Integer id = 1;
+	
+	public static void incluir(Produto produto) {
+		produto.setId(id++);
+		mapa.put(produto.getId(), produto);
+		
+		System.out.println("> " + produto);
+	}
+	
+	public static void excluir(Integer id) {
+		mapa.remove(id);
+	}
+	
+	public static Collection<Produto> obterLista(){
+		return mapa.values();
+	}
+		
 	@GetMapping(value = "/produto/lista")
 	public String telaLista(Model model) {
-		
-		Produto p1 = new Produto();		
-		p1.setCodigo(12); 
-		p1.setNome("Tv Samsung");
-		p1.setValor(2000);
-		
-		Produto p2 = new Produto();	
-		p2.setCodigo(144); 
-		p2.setNome("Geladeira");
-		p2.setValor(1500);	
-		
-		Produto p3 = new Produto();		
-		p3.setCodigo(345); 
-		p3.setNome("Notebook dell");
-		p3.setValor(5000);
-
-		List<Produto> produtos = new ArrayList<Produto>();
-		produtos.add(p1);
-		produtos.add(p2);
-		produtos.add(p3);
-
-		model.addAttribute("listagem", produtos);
+		model.addAttribute("listagem", obterLista());
 
 		return "produto/lista";
+	}
+	
+	@GetMapping(value = "/produto/{id}/excluir")
+	public String exclusao(@PathVariable Integer id) {
+
+		excluir(id);
+		
+		return "redirect:/produto/lista";
 	}
 
 }

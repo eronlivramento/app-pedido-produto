@@ -1,42 +1,49 @@
 package br.edu.infnet.appproduto.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import br.edu.infnet.appproduto.model.domain.Cliente;
 
 @Controller
 public class ClienteController {
 
+	private static Map<Integer, Cliente> mapa = new HashMap<Integer, Cliente>();	
+	private static Integer id = 1;
+	
+	public static void incluir(Cliente cliente) {
+		cliente.setId(id++);
+		mapa.put(cliente.getId(), cliente);
+		
+		System.out.println("> " + cliente);
+	}
+	
+	public static void excluir(Integer id) {
+		mapa.remove(id);
+	}
+	
+	public static Collection<Cliente> obterLista(){
+		return mapa.values();
+	}
+		
 	@GetMapping(value = "/cliente/lista")
 	public String telaLista(Model model) {
-		
-		Cliente s1 = new Cliente();		
-		s1.setCpf("12345667890");
-		s1.setEmail("cliente@primeiro.com");
-		s1.setNome("Primeiro cliente");
-		
-		Cliente s2 = new Cliente();		
-		s2.setCpf("0987654321");
-		s2.setEmail("cliente@segundo.com");
-		s2.setNome("Segundo cliente");
-		
-		Cliente s3 = new Cliente();	
-		s3.setCpf("9999999990");
-		s3.setEmail("cliente@terceiro.com");
-		s3.setNome("Terceiro cliente");	
-
-		List<Cliente> clientes = new ArrayList<Cliente>();
-		clientes.add(s1);
-		clientes.add(s2);
-		clientes.add(s3);
-
-		model.addAttribute("listagem", clientes);
+		model.addAttribute("listagem", obterLista());
 
 		return "cliente/lista";
+	}
+	
+	@GetMapping(value = "/cliente/{id}/excluir")
+	public String exclusao(@PathVariable Integer id) {
+
+		excluir(id);
+		
+		return "redirect:/cliente/lista";
 	}
 }

@@ -1,6 +1,7 @@
 package br.edu.infnet.appproduto.model.domain;
 
 public class Produto {
+	private Integer id;
 	private String nome;
 	private float valor;
 	private int codigo;
@@ -8,6 +9,14 @@ public class Produto {
 	@Override
 	public String toString() {
 		return nome + ";" + valor + ";" + codigo;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNome() {

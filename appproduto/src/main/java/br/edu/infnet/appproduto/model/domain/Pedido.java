@@ -4,12 +4,27 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class Pedido {
+	private Integer id;
 	private String descricao;
 	private LocalDateTime data;
 	private boolean web;
 	private Cliente cliente;
 	private List<Produto> produtos;
 	
+
+	public Pedido() {
+		data = LocalDateTime.now();
+		web = false;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
 		return descricao + ";" + data + ";" + web + ";" + cliente + ";" + produtos.size();
