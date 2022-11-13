@@ -1,40 +1,22 @@
 package br.edu.infnet.appproduto.controller;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import br.edu.infnet.appproduto.model.domain.Cliente;
+import br.edu.infnet.appproduto.model.domain.service.ClienteService;
 
 @Controller
 public class ClienteController {
 
-	private static Map<Integer, Cliente> mapa = new HashMap<Integer, Cliente>();	
-	private static Integer id = 1;
+	@Autowired
+	private ClienteService service;
 	
-	public static void incluir(Cliente cliente) {
-		cliente.setId(id++);
-		mapa.put(cliente.getId(), cliente);
-		
-		System.out.println("> " + cliente);
-	}
-	
-	public static void excluir(Integer id) {
-		mapa.remove(id);
-	}
-	
-	public static Collection<Cliente> obterLista(){
-		return mapa.values();
-	}
-		
 	@GetMapping(value = "/cliente/lista")
 	public String telaLista(Model model) {
-		model.addAttribute("listagem", obterLista());
+		model.addAttribute("listagem", service.obterLista());
 
 		return "cliente/lista";
 	}
@@ -42,7 +24,7 @@ public class ClienteController {
 	@GetMapping(value = "/cliente/{id}/excluir")
 	public String exclusao(@PathVariable Integer id) {
 
-		excluir(id);
+		service.excluir(id);
 		
 		return "redirect:/cliente/lista";
 	}

@@ -6,27 +6,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import br.edu.infnet.appproduto.model.domain.service.EscritorioService;
-
+import br.edu.infnet.appproduto.model.domain.service.EletroeletronicoService;
 
 @Controller
-public class EscritorioController {
+public class EletroeletronicoController {
 	
 	@Autowired
-	private EscritorioService service;
+	private EletroeletronicoService service;
 	
-	@GetMapping(value = "/escritorio/lista")
+	@GetMapping(value = "/eletroeletronico/lista")
 	public String telaLista(Model model) {
 		model.addAttribute("listagem", service.obterLista());
 
-		return "escritorio/lista";
+		return "eletroeletronico/lista";
 	}
 	
-	@GetMapping(value = "/escritorio/{id}/excluir")
+	@GetMapping(value = "/eletroeletronico/{id}/excluir")
 	public String exclusao(@PathVariable Integer id) {
 
 		service.excluir(id);
 		
-		return "redirect:/escritorio/lista";
+		return "redirect:/eletroeletronico/lista";
 	}
+
 }

@@ -3,12 +3,28 @@ package br.edu.infnet.appproduto.model.domain;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name = "tpedido")
 public class Pedido {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String descricao;
 	private LocalDateTime data;
 	private boolean web;
+	
+	@Transient
 	private Cliente cliente;
+	
+	@Transient
 	private List<Produto> produtos;
 	
 

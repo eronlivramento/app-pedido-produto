@@ -1,5 +1,10 @@
 package br.edu.infnet.appproduto.model.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tescritorio")
 public class Escritorio extends Produto {
 	private boolean fragil;
 	private float tamanho;

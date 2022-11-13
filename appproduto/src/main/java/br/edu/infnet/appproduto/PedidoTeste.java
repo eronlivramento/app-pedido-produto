@@ -4,22 +4,26 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.appproduto.controller.PedidoController;
 import br.edu.infnet.appproduto.model.domain.Cliente;
 import br.edu.infnet.appproduto.model.domain.Eletroeletronico;
 import br.edu.infnet.appproduto.model.domain.Eletrodomestico;
 import br.edu.infnet.appproduto.model.domain.Escritorio;
 import br.edu.infnet.appproduto.model.domain.Pedido;
 import br.edu.infnet.appproduto.model.domain.Produto;
+import br.edu.infnet.appproduto.model.domain.service.PedidoService;
 
 @Order(1)
 @Component
 public class PedidoTeste implements ApplicationRunner {
+	
+	@Autowired
+	private PedidoService service;
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
@@ -60,7 +64,7 @@ public class PedidoTeste implements ApplicationRunner {
 		produtos.add(escritorio);
 		p1.setProdutos(produtos);
 		p1.setCliente(cliente);
-		PedidoController.incluir(p1);
+		service.incluir(p1);
 		
 		Pedido p2 = new Pedido();		
 		p2.setData(LocalDateTime.now());
@@ -71,7 +75,7 @@ public class PedidoTeste implements ApplicationRunner {
 		produtos.add(eletroeletronico);
 		p2.setProdutos(produtos);
 		p2.setCliente(cliente);
-		PedidoController.incluir(p2);
+		service.incluir(p2);
 		
 		Pedido p3 = new Pedido();		
 		p3.setData(LocalDateTime.now());
@@ -81,6 +85,6 @@ public class PedidoTeste implements ApplicationRunner {
 		produtos.add(eletrodomestrico2);
 		p3.setProdutos(produtos);
 		p3.setCliente(cliente);
-		PedidoController.incluir(p3);
+		service.incluir(p3);
 	}
 }
