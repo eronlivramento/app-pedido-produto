@@ -11,7 +11,7 @@ import br.edu.infnet.appproduto.model.domain.Eletroeletronico;
 import br.edu.infnet.appproduto.model.domain.Produto;
 import br.edu.infnet.appproduto.model.domain.service.ProdutoService;
 
-@Order(2)
+@Order(4)
 @Component
 public class ProdutoTeste implements ApplicationRunner {
 	

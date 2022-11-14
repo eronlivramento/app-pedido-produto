@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import br.edu.infnet.appproduto.model.domain.Escritorio;
 import br.edu.infnet.appproduto.model.domain.service.EscritorioService;
 
-@Order(3)
+@Order(7)
 @Component
 public class EscritorioTeste implements ApplicationRunner {
 	

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import br.edu.infnet.appproduto.model.domain.Eletroeletronico;
 import br.edu.infnet.appproduto.model.domain.service.EletroeletronicoService;
 
-@Order(4)
+@Order(6)
 @Component
 public class EletroeletronicoTeste implements ApplicationRunner {
 	
