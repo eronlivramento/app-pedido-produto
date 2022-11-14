@@ -3,10 +3,15 @@ package br.edu.infnet.appproduto.model.domain;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -24,8 +29,12 @@ public class Pedido {
 	@Transient
 	private Cliente cliente;
 	
-	@Transient
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	private List<Produto> produtos;
+	
+	@ManyToOne
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario;
 	
 
 	public Pedido() {
@@ -84,6 +93,14 @@ public class Pedido {
 
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	

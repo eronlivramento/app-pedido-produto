@@ -6,24 +6,19 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.4</version>
+		<version>2.7.5</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.edu.infnet</groupId>
-	<artifactId>appproduto</artifactId>
+	<artifactId>api-usuario</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>appproduto</name>
-	<description>Projeto para gestão de produtos</description>
+	<name>api-usuario</name>
+	<description>API Usuário</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
-			<version>3.1.4</version>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -42,17 +37,6 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>taglibs</groupId>
-			<artifactId>standard</artifactId>
-			<version>1.1.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
 		</dependency>
 
 		<dependency>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.appproduto.model.domain.Pedido;
+import br.edu.infnet.appproduto.model.domain.Usuario;
 import br.edu.infnet.appproduto.model.domain.repository.PedidoRepository;
 
 @Service
@@ -24,6 +25,10 @@ public class PedidoService {
 	
 	public Collection<Pedido> obterLista(){
 		return (Collection<Pedido>) repository.findAll();
+	}	
+	
+	public Collection<Pedido> obterLista(Usuario usuario){
+		return (Collection<Pedido>) repository.obterLista(usuario.getId());
 	}	
 
 }

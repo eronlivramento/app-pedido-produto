@@ -16,6 +16,7 @@ import br.edu.infnet.appproduto.model.domain.Eletrodomestico;
 import br.edu.infnet.appproduto.model.domain.Escritorio;
 import br.edu.infnet.appproduto.model.domain.Pedido;
 import br.edu.infnet.appproduto.model.domain.Produto;
+import br.edu.infnet.appproduto.model.domain.Usuario;
 import br.edu.infnet.appproduto.model.domain.service.PedidoService;
 
 @Order(2)
@@ -28,6 +29,9 @@ public class PedidoTeste implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		System.out.println("## Cadastramento de Pedidos ##");
+		
+		Usuario usuario = new Usuario();
+		usuario.setId(1);
 		
 		
 		Escritorio escritorio = new Escritorio();		
@@ -64,6 +68,7 @@ public class PedidoTeste implements ApplicationRunner {
 		produtos.add(escritorio);
 		p1.setProdutos(produtos);
 		p1.setCliente(cliente);
+		p1.setUsuario(usuario);
 		service.incluir(p1);
 		
 		Pedido p2 = new Pedido();		
@@ -75,6 +80,7 @@ public class PedidoTeste implements ApplicationRunner {
 		produtos.add(eletroeletronico);
 		p2.setProdutos(produtos);
 		p2.setCliente(cliente);
+		p2.setUsuario(usuario);
 		service.incluir(p2);
 		
 		Pedido p3 = new Pedido();		
@@ -85,6 +91,7 @@ public class PedidoTeste implements ApplicationRunner {
 		produtos.add(eletrodomestrico2);
 		p3.setProdutos(produtos);
 		p3.setCliente(cliente);
+		p3.setUsuario(usuario);
 		service.incluir(p3);
 	}
 }

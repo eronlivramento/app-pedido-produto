@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import br.edu.infnet.appproduto.model.domain.Eletrodomestico;
 import br.edu.infnet.appproduto.model.domain.Eletroeletronico;
 import br.edu.infnet.appproduto.model.domain.Produto;
+import br.edu.infnet.appproduto.model.domain.Usuario;
 import br.edu.infnet.appproduto.model.domain.service.ProdutoService;
 
 @Order(4)
@@ -20,22 +21,28 @@ public class ProdutoTeste implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+		Usuario usuario = new Usuario();
+		usuario.setId(1);
+		
 		Produto p1 = new Eletrodomestico();		
 		p1.setCodigo(12); 
 		p1.setNome("Tv Samsung");
 		p1.setValor(2000);
+		p1.setUsuario(usuario);
 		service.incluir(p1);
 		
 		Produto p2 = new Eletrodomestico();	
 		p2.setCodigo(144); 
 		p2.setNome("Geladeira");
 		p2.setValor(1500);	
+		p2.setUsuario(usuario);
 		service.incluir(p2);
 		
 		Produto p3 = new Eletroeletronico();		
 		p3.setCodigo(345); 
 		p3.setNome("Notebook dell");
 		p3.setValor(5000);
+		p3.setUsuario(usuario);
 		service.incluir(p2);
 	}
 }

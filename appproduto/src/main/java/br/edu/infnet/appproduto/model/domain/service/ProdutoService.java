@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.appproduto.model.domain.Produto;
+import br.edu.infnet.appproduto.model.domain.Usuario;
 import br.edu.infnet.appproduto.model.domain.repository.ProdutoRepository;
 
 @Service
@@ -24,6 +25,10 @@ public class ProdutoService {
 	
 	public Collection<Produto> obterLista(){
 		return (Collection<Produto>) repository.findAll();
-	}	
+	}			
+
+	public Collection<Produto> obterLista(Usuario usuario){
+		return (Collection<Produto>) repository.obterLista(usuario.getId());
+	}
 
 }
